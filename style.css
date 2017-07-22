@@ -1,6 +1,80 @@
+body {
+	background-image: url("img/tomatoes.jpeg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;
+	background-color: #ffffff;
+}
+
 .page-header {
 	text-align: center;
+	font-family: 'Orbitron', sans-serif;
+	border-bottom: none;
+	margin-bottom: 50px;
 }
+
+#leaves {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border: 100px solid rgba(0,0,0,0);
+  border-top: 0 solid;
+  border-bottom: 70px solid #1abc9c;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: red;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  -webkit-transform: rotateZ(35deg)   ;
+  transform: rotateZ(35deg)   ;
+}
+
+#leaves::before {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  position: absolute;
+  content: "";
+  top: -45px;
+  left: -65px;
+  border: 30px solid rgba(0,0,0,0);
+  border-top: 0 solid;
+  border-bottom: 80px solid #1abc9c;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: none;
+  -webkit-transform: rotateZ(-35deg)   ;
+  transform: rotateZ(-35deg)   ;
+}
+
+#leaves::after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  position: absolute;
+  content: "";
+  top: 3px;
+  left: -105px;
+  border: 100px solid rgba(0,0,0,0);
+  border-top: 0 solid;
+  border-bottom: 70px solid #1abc9c;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: red;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  text-shadow: none;
+  -webkit-transform: rotateZ(-70deg)   ;
+  transform: rotateZ(-70deg)   ;
+}
+
 
 #tomato {
 	border-radius: 50%;
@@ -11,26 +85,27 @@
 	position: relative;
 }
 
-#work_rest {
-	width: 50%;
-	margin: 50px 180px 0;
-	display: block;
+#work_rest_container {
 	position: absolute;
+	width: 300px;
+	top: 150px;
+	left: 180px;
+	padding: 10px;
 }
 
 #clockDisplay {
 	font-family: 'Orbitron', sans-serif;
 	font-size: 26pt;
-	margin: 0 auto;
+	text-align: center;
+	margin: auto;
 	display: block;
 	width: 50%;
-	line-height: 500px;
+	line-height: 475px;
 }
 
 #controls {
-	margin: 400px 180px 0;
-	width: 50%;
-	display: block;
-	position: absolute
-
+	position: absolute;
+	top: 400px;
+	left: 190px;
+	width: 300px;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pomodoro Clock</title>
+	<title>Pomodoro Timer</title>
 	<meta name="viewport" content="width = device-width, initial scale = 1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -9,16 +9,26 @@
 </head>
 <body>
 
+<audio id="dusk" src="sounds/DuskWolf.wav" preload="auto"></audio>
+<audio id="daybreak" src="sounds/DaybreakRooster.wav" preload="auto"></audio>
+
 <div class="container">
 	<div class="page-header">
 		<h1>Pomodoro Timer</h1>
 	</div>
 
 	<div id="tomato">
-		<div id="work_rest" class="btn-group btn-group-lg">
-			<button class="btn-danger btn-lg" id="work"></button>
-			<button class="btn-success btn-lg" id="rest"></button>
+
+		<div id="leaves"></div>
+
+		<div id="work_rest_container">
+			<div id="work_rest" class="btn-group btn-group-lg">
+				<button class="btn-danger btn-lg" id="work"></button>
+				<button class="btn-success btn-lg" id="rest"></button>
+			</div>
 		</div>
+
+		<div id="clockDisplay"></div>
 
 		<div id="controls">
 			<button class="btn-primary" id="play">Play</button>
@@ -27,7 +37,7 @@
 			<button class="btn-primary" id="switch">Switch</button>
 		</div>
 
-		<div id="clockDisplay"></div>
+
 	</div>
 </div>
 

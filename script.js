@@ -4,8 +4,8 @@ $(document).ready(function() {
   var working = true;
   var startTime = 1500;
   var countedTime = 0;
-  var workInterval = .1;
-  var restInterval = .1;
+  var workInterval = 25;
+  var restInterval = 5;
 
 
   function initial() {
@@ -71,22 +71,20 @@ $(document).ready(function() {
 
   var clockStart = setInterval(countDown, 1000);
 
-  daybreak = new Audio("sounds/DaybreakRooster.wav");
-
-  dusk = new Audio("sounds/DuskWolf.wav");
-
   function switcher() {
     if (working === true) {
+      var dusk = document.getElementById("dusk");
       dusk.play();
-      dusk.onplay = function () {alert("Time for a break!");};
+      setTimeout(function(){alert("Time for a break!");},100);
       countedTime = 0;
       startTime = restInterval * 60;
       working = false;
       clockStart();
     }
     else {
+      var daybreak = document.getElementById("daybreak");
       daybreak.play();
-      daybreak.onplay = function () {alert("Time to work!");};
+      setTimeout(function(){alert("Time for work!");},100);
       countedTime = 0;
       startTime = workInterval * 60;
       working = true;
