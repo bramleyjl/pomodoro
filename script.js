@@ -7,7 +7,6 @@ $(document).ready(function() {
   var workInterval = 25;
   var restInterval = 5;
 
-
   function initial() {
 
     if (working === true) {
@@ -21,9 +20,7 @@ $(document).ready(function() {
         minutes = "0" + minutes;
       }
       $("#clockDisplay").html("Work: " + minutes + ":" + seconds);
-    }
-
-    else {
+    } else {
       startTime = restInterval * 60;
       var seconds = (startTime - countedTime) % 60;
       if (seconds < 10) {
@@ -127,14 +124,16 @@ $(document).ready(function() {
   $("#work").click(function() {
     go = false;
     countedTime = 0;
-    workInterval = prompt("What work interval (in minutes) would you like?");
+    var workPrompt = parseInt(prompt("What work interval (in minutes) would you like?"));
+    if (Number.isInteger(workPrompt) && workPrompt !== 0) workInterval = workPrompt;
     initial();
   });
 
   $("#rest").click(function() {
     go = false;
     countedTime = 0;
-    restInterval = prompt("What rest interval (in minutes) would you like?");
+    var restPrompt = parseInt(prompt("What rest interval (in minutes) would you like?"));
+    if (Number.isInteger(restPrompt) && restPrompt !== 0) restInterval = restPrompt;
     initial();
   });
 
