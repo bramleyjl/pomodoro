@@ -1,14 +1,15 @@
 $(document).ready(function() {
 
-  var go = false;
+  //default work/rest intervals
   var working = true;
-  var startTime = 1500;
-  var countedTime = 0;
   var workInterval = 25;
   var restInterval = 5;
 
-  function initial() {
+  resetClock();
 
+  function resetClock() {
+    go = false;
+    countedTime = 0;
     if (working === true) {
       startTime = workInterval * 60;
       var seconds = (startTime - countedTime) % 60;
@@ -32,35 +33,30 @@ $(document).ready(function() {
       }
       $("#clockDisplay").html("Rest: " + minutes + ":" + seconds);
     }
-    
     $("#work").html("Work - " + workInterval);
     $("#rest").html("Rest - " + restInterval);
   }
 
-  initial();
-
   function countDown() {
     if (go === true) {
-
       var seconds = (startTime - countedTime) % 60;
       if (seconds < 10) {
         seconds = "0" + seconds;
       }
-      
       var minutes = Math.floor((startTime - countedTime) / 60);
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
 
       if (countedTime === startTime) {
-        switcher();
+        swapWorkRest();
       }
       
       if (working === true) {
-      $("#clockDisplay").html("Work: " + minutes + ":" + seconds);
+        $("#clockDisplay").html("Work: " + minutes + ":" + seconds);
       }
       else {
-      $("#clockDisplay").html("Rest: " + minutes + ":" + seconds);  
+        $("#clockDisplay").html("Rest: " + minutes + ":" + seconds);  
       }
       countedTime += 1;
     }
@@ -68,7 +64,7 @@ $(document).ready(function() {
 
   var clockStart = setInterval(countDown, 1000);
 
-  function switcher() {
+  function swapWorkRest() {
     if (working === true) {
       var dusk = document.getElementById("dusk");
       dusk.play();
@@ -91,8 +87,8 @@ $(document).ready(function() {
 
   $("#play").click(function() {
     if (go === false) {
-    go = true;
-    clockStart();
+      go = true;
+      clockStart();
     }
   });
 
@@ -100,41 +96,27 @@ $(document).ready(function() {
     go = false;
   });
 
-  $("#reset").click(function() {
-    go = false;
-    countedTime = 0;
-    initial();
+  $("#stop").click(function() {
+    resetClock();
   });
 
   $("#switch").click(function() {
-    if (working === true) {
-      go = false;
-      countedTime = 0;
-      working = false;
-      initial();
-    }
-    else {
-      go = false;
-      countedTime = 0;
-      working = true;
-      initial();
-    }
+    working = (working === true) ? false : true;
+    resetClock();
   });
 
   $("#work").click(function() {
-    go = false;
-    countedTime = 0;
     var workPrompt = parseInt(prompt("What work interval (in minutes) would you like?"));
     if (Number.isInteger(workPrompt) && workPrompt !== 0) workInterval = workPrompt;
-    initial();
+    working = true;
+    resetClock();
   });
 
   $("#rest").click(function() {
-    go = false;
-    countedTime = 0;
     var restPrompt = parseInt(prompt("What rest interval (in minutes) would you like?"));
     if (Number.isInteger(restPrompt) && restPrompt !== 0) restInterval = restPrompt;
-    initial();
+    working = false;
+    resetClock();
   });
 
 });
