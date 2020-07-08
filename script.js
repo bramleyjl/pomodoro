@@ -47,16 +47,16 @@ $(document).ready(function() {
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
-
-      if (countedTime === startTime) {
-        swapWorkRest();
-      }
       
       if (working === true) {
         $("#clockDisplay").html("Work: " + minutes + ":" + seconds);
       }
       else {
         $("#clockDisplay").html("Rest: " + minutes + ":" + seconds);  
+      }
+
+      if (countedTime === startTime) {
+        swapWorkRest();
       }
       countedTime += 1;
     }
@@ -68,27 +68,26 @@ $(document).ready(function() {
     if (working === true) {
       var dusk = document.getElementById("dusk");
       dusk.play();
-      setTimeout(function(){alert("Time for a break!");},100);
+      // setTimeout(function(){alert("Time for a break!");},100);
       countedTime = 0;
       startTime = restInterval * 60;
       working = false;
-      clockStart();
+      resetClock();
     }
     else {
       var daybreak = document.getElementById("daybreak");
       daybreak.play();
-      setTimeout(function(){alert("Time for work!");},100);
+      // setTimeout(function(){alert("Time for work!");},100);
       countedTime = 0;
-      startTime = workInterval * 60;
       working = true;
-      clockStart();
+      resetClock();
     }
   }
 
   $("#play").click(function() {
     if (go === false) {
       go = true;
-      clockStart();
+      countDown();
     }
   });
 
